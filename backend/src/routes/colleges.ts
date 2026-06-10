@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { query, findMany, findOne } from '../db/queries';
 import { collegeQuerySchema, uuidParamSchema, compareQuerySchema, validateData } from '../validations';
 import { NotFoundError } from '../errors';
@@ -6,7 +6,7 @@ import { NotFoundError } from '../errors';
 const router = Router();
 
 // list colleges
-router.get('/', async (req, res, next) => {
+router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const data = await validateData(collegeQuerySchema, req.query);
     const { search, location, rating, minFees, maxFees, page, limit, sortBy, sortOrder } = data;
@@ -61,7 +61,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // featured colleges
-router.get('/featured', async (req, res, next) => {
+router.get('/featured', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const colleges = await findMany(`
       SELECT id, name, location, fees, rating, placement_rate, average_package, highest_package, image_url, created_at
@@ -76,7 +76,7 @@ router.get('/featured', async (req, res, next) => {
 });
 
 // compare colleges
-router.get('/compare', async (req, res, next) => {
+router.get('/compare', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const data = await validateData(compareQuerySchema, req.query);
     const colleges = await findMany(`
@@ -93,7 +93,7 @@ router.get('/compare', async (req, res, next) => {
 });
 
 // college detail
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = await validateData(uuidParamSchema, req.params);
     const college = await findOne(`

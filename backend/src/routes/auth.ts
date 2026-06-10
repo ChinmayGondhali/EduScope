@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { query, findOne } from '../db/queries';
 import { hashPassword, comparePassword, setSession, logout } from '../auth/utils';
 import { signupSchema, loginSchema, validateData } from '../validations';
@@ -8,7 +8,7 @@ import { authMiddleware } from '../auth/withAuth';
 const router = Router();
 
 // signup
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const data = await validateData(signupSchema, req.body);
     const { name, email, password } = data;
@@ -38,7 +38,7 @@ router.post('/signup', async (req, res, next) => {
 });
 
 // login
-router.post('/login', async (req, res, next) => {
+router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const data = await validateData(loginSchema, req.body);
     const { email, password } = data;
@@ -66,13 +66,13 @@ router.post('/login', async (req, res, next) => {
 });
 
 // logout
-router.post('/logout', async (req, res) => {
+router.post('/logout', async (req: Request, res: Response) => {
   await logout(res);
   res.json({ success: true, message: 'Logged out successfully' });
 });
 
 // me
-router.get('/me', authMiddleware, (req, res) => {
+router.get('/me', authMiddleware, (req: Request, res: Response) => {
   // @ts-ignore
   res.json({ success: true, data: { user: req.user } });
 });
