@@ -1,6 +1,6 @@
 import { Pool, PoolClient } from 'pg';
 import { dbConfig } from './config';
-import { logger } from '@/utils/logger';
+import { logger } from '../utils/logger';
 
 /**
  * Extend global type for database pool

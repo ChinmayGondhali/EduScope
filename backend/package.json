@@ -15,6 +15,8 @@
     "express": "^4.19.2",
     "jose": "^5.4.0",
     "pg": "^8.12.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -25,7 +27,6 @@
     "@types/node": "^20.14.2",
     "@types/pg": "^8.11.6",
     "ts-node-dev": "^2.0.0",
-    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.5"
   }
 }

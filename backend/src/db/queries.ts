@@ -1,6 +1,6 @@
 import { pool, getClient } from './connection';
 import { QueryResult, QueryResultRow } from 'pg';
-import { logger } from '@/utils/logger';
+import { logger } from '../utils/logger';
 
 /**
  * Generic query executor
