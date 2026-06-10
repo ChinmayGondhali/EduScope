@@ -51,6 +51,7 @@ export interface DashboardData {
   statistics: {
     saved_count: number;
     reviews_count: number;
+    applications_count: number;
   };
 }
 

@@ -14,7 +14,7 @@ export interface ValidationErrorResponse {
  * Reusable validation helper that throws a ValidationError on failure
  */
 export async function validateData<T>(
-  schema: z.Schema<T>,
+  schema: z.ZodType<T, any, any>,
   data: unknown
 ): Promise<T> {
   const result = await schema.safeParseAsync(data);

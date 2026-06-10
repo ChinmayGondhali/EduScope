@@ -11,7 +11,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     const data = await validateData(collegeQuerySchema, req.query);
     const { search, location, rating, minFees, maxFees, page, limit, sortBy, sortOrder } = data;
 
-    const offset = (page - 1) * limit;
+    const offset = (page! - 1) * limit!;
     const values: any[] = [];
     const conditions: string[] = [];
 
@@ -40,7 +40,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
 
     const countResult = await query(`SELECT COUNT(*) FROM colleges ${whereClause}`, values);
     const totalItems = parseInt(countResult.rows[0].count);
-    const totalPages = Math.ceil(totalItems / limit);
+    const totalPages = Math.ceil(totalItems / limit!);
 
     const colleges = await findMany(`
       SELECT id, name, location, fees, rating, placement_rate, average_package, highest_package, image_url, created_at
@@ -53,7 +53,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     res.json({
       success: true,
       data: colleges,
-      pagination: { page, limit, totalItems, totalPages, hasNextPage: page < totalPages, hasPrevPage: page > 1 }
+      pagination: { page, limit, totalItems, totalPages, hasNextPage: page! < totalPages, hasPrevPage: page! > 1 }
     });
   } catch (error) {
     next(error);
