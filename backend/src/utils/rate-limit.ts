@@ -41,10 +41,10 @@ export function rateLimit(ip: string, options: RateLimitOptions) {
 }
 
 /**
- * Helper to get client IP from NextRequest
+ * Helper to get client IP from Express Request
  */
-import { NextRequest } from 'next/server';
+import { Request } from 'express';
 
-export function getIP(request: NextRequest) {
-  return request.ip || request.headers.get('x-forwarded-for') || '127.0.0.1';
+export function getIP(request: Request) {
+  return request.ip || request.headers['x-forwarded-for'] || '127.0.0.1';
 }

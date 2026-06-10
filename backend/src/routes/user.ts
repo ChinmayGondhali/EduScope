@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { query, findMany, findOne } from '../db/queries';
 import { saveCollegeSchema, uuidParamSchema, validateData } from '../validations';
 import { NotFoundError } from '../errors';
@@ -8,7 +8,7 @@ const router = Router();
 router.use(authMiddleware);
 
 // dashboard
-router.get('/dashboard', async (req, res, next) => {
+router.get('/dashboard', async (req: Request, res: Response, next: NextFunction) => {
   try {
     // @ts-ignore
     const user = req.user;
@@ -50,7 +50,7 @@ router.get('/dashboard', async (req, res, next) => {
 });
 
 // list saved
-router.get('/saved', async (req, res, next) => {
+router.get('/saved', async (req: Request, res: Response, next: NextFunction) => {
   try {
     // @ts-ignore
     const user = req.user;
@@ -68,7 +68,7 @@ router.get('/saved', async (req, res, next) => {
 });
 
 // save college
-router.post('/saved', async (req, res, next) => {
+router.post('/saved', async (req: Request, res: Response, next: NextFunction) => {
   try {
     // @ts-ignore
     const user = req.user;
@@ -88,7 +88,7 @@ router.post('/saved', async (req, res, next) => {
 });
 
 // remove saved
-router.delete('/saved/:id', async (req, res, next) => {
+router.delete('/saved/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     // @ts-ignore
     const user = req.user;
@@ -105,7 +105,7 @@ router.delete('/saved/:id', async (req, res, next) => {
 });
 
 // apply to college
-router.post('/apply', async (req, res, next) => {
+router.post('/apply', async (req: Request, res: Response, next: NextFunction) => {
   try {
     // @ts-ignore
     const user = req.user;
@@ -127,7 +127,7 @@ router.post('/apply', async (req, res, next) => {
 });
 
 // update profile
-router.put('/profile', async (req, res, next) => {
+router.put('/profile', async (req: Request, res: Response, next: NextFunction) => {
   try {
     // @ts-ignore
     const user = req.user;
